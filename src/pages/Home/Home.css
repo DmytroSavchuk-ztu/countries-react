@@ -1,0 +1,17 @@
+.container{
+    width: 1400px;
+}
+.countries_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    width: 85%;
+    height: 25px;
+    margin: 10px 0px 20px 0px;
+    padding: 0px 10px;
+}

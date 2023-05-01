@@ -1,0 +1,18 @@
+.country_box{
+    width: 400px;
+    height: 100px;
+    background: #1f24b0;
+    margin: 0px 5px 5px 5px;
+    padding: 10px 20px;
+    font-size: 30px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+img{
+    width: 25%;
+    height: 50%;
+}

@@ -1,0 +1,11 @@
+.header{
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 40px;
+}
+.header_container{
+    display: flex;
+    width: 1400px;
+    flex-direction: column;
+    margin: 10px 0px 20px 0px;
+}
