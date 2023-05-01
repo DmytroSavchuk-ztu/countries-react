@@ -1,7 +1,7 @@
 .country_box{
     width: 400px;
-    height: 100px;
-    background: #1f24b0;
+    height: 120px;
+    background: #191fc4;
     margin: 0px 5px 5px 5px;
     padding: 10px 20px;
     font-size: 30px;
@@ -10,9 +10,18 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 20px;
+    transition: all ease 0.3s;
+    box-sizing: border-box;
 }
+.country_box:hover{
+    /* scale: 1.1; */
+    background: #4c52ee;
 
+}
+.country_box img{
+    margin-left: 2px;
+}
 img{
-    width: 25%;
+    width: 23%;
     height: 50%;
 }

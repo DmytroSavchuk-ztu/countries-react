@@ -1,5 +1,5 @@
 .container{
-    width: 1400px;
+    width: 80%;
 }
 .countries_container{
     width: 100%;
@@ -10,7 +10,7 @@
     justify-content: center;
 }
 input {
-    width: 85%;
+    width: 70%;
     height: 25px;
     margin: 10px 0px 20px 0px;
     padding: 0px 10px;
