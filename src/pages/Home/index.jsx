@@ -1,44 +1,63 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
 import "./Home.css";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-import Country from "../../components/Country";
+import axios from "axios";
+import CountriesList from "./CountriesList";
+import Pagination from "../../components/Pagination";
 
 function Home() {
-  const [contriesList, setContriesList] = useState([]);
-  const [contriesListSerch, setContriesListSerch] = useState([]);
+  const [allCountries, setAllCountries] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countItems, setCountItems] = useState(10);
 
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => res.json())
-      .then((result) => {
-        setContriesList(result);
-        setContriesListSerch(result);
-      });
-  }, []);
+  const countPages = allCountries.length / countItems;
 
-  const handleSearchChange = (e) => {
-    if (!e.target.value) return setContriesListSerch(contriesList)
+  const lastCountryIndex = currentPage * countItems;
+  const firstCountryIndex = lastCountryIndex - countItems;
+  const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
 
-    const resultArr = contriesList.filter(item => item.name.common.toLowerCase().includes(e.target.value.toLowerCase()))
+  const paginate = (page) => {setCurrentPage(page)}
 
-    setContriesListSerch(resultArr)
-  };
+  useEffect(
+    () => async () => {
+      try {
+        const result = await axios("https://restcountries.com/v3.1/all");
+
+        const resultId = result.data.map((item, i) => {
+          return { ...item, id: i + 1 };
+        });
+
+        setAllCountries(resultId);
+      } catch {
+        setAllCountries("Error");
+      }
+    },
+    []
+  );
 
   return (
     <>
       <Header />
-      <input type="text" id="search" onChange={handleSearchChange} />
       <div className="container">
-        <div className="countries_container">
-          {contriesListSerch.map((item) => (
-            <Link key={item.name.common} to="/about">
-              {" "}
-              <Country country={item} />
-            </Link>
-          ))}
+        <div className="contries">
+          <CountriesList allCountry={currentCountry} />
+          <div className="input_">
+            <input type="text" />
+          </div>
         </div>
+        {/* <Pagination
+          numberOfpages={countPages}
+          activePage={currentPage}
+          paginate={paginate}
+          start={currentPage}
+          end={currentPage + 4}
+        /> */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={countPages}
+          onPageChange={paginate}
+        />
       </div>
     </>
   );
