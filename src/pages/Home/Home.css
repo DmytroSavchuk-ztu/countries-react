@@ -1,4 +1,7 @@
 .container{
+    width: 80%;
+}
+.countries_container{
     width: 100%;
 }
 .contries{
@@ -11,11 +14,9 @@
     justify-content: center;
     align-items: center;
 }
-.input_ input{
-    width: 50%;
-    height: 15px;
-    padding: 5px 10px;
-    background: #777070;
-    font-size: 15px;
-    box-sizing: content-box;
+input {
+    width: 70%;
+    height: 25px;
+    margin: 10px 0px 20px 0px;
+    padding: 0px 10px;
 }
