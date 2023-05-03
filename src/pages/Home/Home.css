@@ -1,11 +1,12 @@
 .container{
-    width: 80%;
+    width: 100%;
 }
 .countries_container{
     width: 100%;
 }
 .contries{
     display: flex;
+    justify-content: space-between;
 }
 .input_{
     display: flex;

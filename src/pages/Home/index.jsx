@@ -42,17 +42,7 @@ function Home() {
       <div className="container">
         <div className="contries">
           <CountriesList allCountry={currentCountry} />
-          <div className="input_">
-            <input type="text" />
-          </div>
         </div>
-        {/* <Pagination
-          numberOfpages={countPages}
-          activePage={currentPage}
-          paginate={paginate}
-          start={currentPage}
-          end={currentPage + 4}
-        /> */}
         <Pagination
           currentPage={currentPage}
           totalPages={countPages}

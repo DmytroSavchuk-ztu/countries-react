@@ -7,7 +7,7 @@
   justify-content: center;
 }
 .pagination button {
-  margin: 0px 3px 3px 0px;
+  margin: 0px 3px 3px 3px;
   width: 55px;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -27,17 +27,37 @@
 .button_clicked {
   outline: 4px auto -webkit-focus-ring-color;
 }
-.arrow{
-  cursor: pointer;
-}
-.left-arrow{
-  color: antiquewhite;
-}
-.right-arrow{
-  color: antiquewhite;
-}
 span {
   color: #e0c6c6;
-  font-size: 20px;
-  margin: 0px 2px 0px 2px;
+  font-size: 25px;
+  margin: 0px 4px 0px 4px;
+}
+.arrow{
+    width: 13px;
+    height: 13px;
+    margin: 0px 15px 0px 15px;
+    border-top: 13px solid rgb(239, 238, 238);
+    border-right: 13px solid rgb(239, 238, 238);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    
+}
+.arrow:hover{
+    border-top: 13px solid rgb(171, 166, 166);
+    border-right: 13px solid rgb(171, 166, 166);
+}
+.arrow_disabled{
+      border-top-color: rgb(99, 97, 97);
+      border-right-color: rgb(99, 97, 97);
+      cursor: auto;
+}
+.arrow_disabled:hover{
+      border-top-color: rgb(99, 97, 97);
+      border-right-color: rgb(99, 97, 97);
+}
+.arrow_right {
+    transform: rotate(45deg);
+}
+.arrow_left {
+    transform: rotate(-135deg);
 }
