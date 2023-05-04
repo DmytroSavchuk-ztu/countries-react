@@ -22,8 +22,6 @@ function AboutCountry() {
     [nameCountry]
   );
 
-  console.log(country);
-  console.log(nameCountry);
   return (
     <>
       <Header />

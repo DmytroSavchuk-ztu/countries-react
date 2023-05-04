@@ -51,7 +51,7 @@ img {
 }
 .aboutCountry {
   outline: 1px solid white;
-  width: 50%;
+  width: 40%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -61,11 +61,14 @@ img {
   outline: 1px solid white;
 }
 .country_name {
+    width: 80%;
   font-family: Montserrat;
   color: rgb(178, 214, 245);
-  font-size: 50px;
+  font-size: 20px;
   align-items: center;
-  text-align: center;
+}
+.country_name p {
+    margin-bottom: 10px;
 }
 .flag {
   display: flex;

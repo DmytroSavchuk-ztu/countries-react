@@ -8,16 +8,24 @@ import Pagination from "../../components/Pagination";
 
 function Home() {
   const [allCountries, setAllCountries] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    Number(sessionStorage.getItem("pageNum"))
+  );
   const [countItems, setCountItems] = useState(10);
 
   const countPages = allCountries.length / countItems;
 
   const lastCountryIndex = currentPage * countItems;
   const firstCountryIndex = lastCountryIndex - countItems;
-  const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
+  const currentCountry = allCountries.slice(
+    firstCountryIndex,
+    lastCountryIndex
+  );
 
-  const paginate = (page) => {setCurrentPage(page)}
+  const paginate = (page) => {
+    setCurrentPage(page);
+    sessionStorage.setItem("pageNum", page);
+  };
 
   useEffect(
     () => async () => {

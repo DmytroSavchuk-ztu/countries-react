@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import "./CountriesList.css";
 
-function CountriesList({allCountry}) {
-     const [showDiv, setShowDiv] = useState({
+function CountriesList({ allCountry }) {
+  const [showDiv, setShowDiv] = useState({
     isVisible: false,
     object: null,
   });
@@ -46,9 +46,15 @@ function CountriesList({allCountry}) {
         {showDiv.isVisible && (
           <div className="aboutCountry">
             <div className="flag">
-              <img src={showDiv.object.flags.png} alt={showDiv.object.flags.alt} />
+              <img
+                src={showDiv.object.flags.png}
+                alt={showDiv.object.flags.alt}
+              />
             </div>
-            <div className="country_name">{showDiv.object.name.common}</div>
+            <div className="country_name">
+              <p>name: {showDiv.object.name.common}</p>
+              <p>capital: {showDiv.object.capital}</p>
+            </div>
           </div>
         )}
       </div>

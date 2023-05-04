@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 import "./Pagination.css";
-
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
-
+  
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
@@ -12,17 +11,22 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const renderPageNumbers = () => {
     const pageList = [];
 
+    const numberOfpagesOnWhichSide = 2;
     let hasStartedDots = false;
     let hasEndedDots = false;
-    
+
     pageNumbers.map((item) => {
-      if ( // Умови за яких буде відображатися кнопка з номером сторінки
-        (currentPage === 1 && item <= 3) ||
-        (currentPage === 25 && item >= 23) ||
+      if (
+        // Умови за яких буде відображатися кнопка з номером сторінки
+        ((currentPage === 1 || currentPage <= numberOfpagesOnWhichSide+1) && item <= numberOfpagesOnWhichSide*2+2) ||
+        ((currentPage === totalPages || currentPage >= totalPages - numberOfpagesOnWhichSide-1) &&
+          item >= totalPages - (numberOfpagesOnWhichSide*2+1)) ||
         item === 1 ||
         item === totalPages ||
-        (item >= currentPage - 1 && item <= currentPage + 1)
-      ) { // 
+        (item >= currentPage - numberOfpagesOnWhichSide &&
+          item <= currentPage + numberOfpagesOnWhichSide)
+      ) {
+        //
         pageList.push(
           <button
             key={item}
@@ -34,14 +38,14 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         );
         hasStartedDots = false;
         hasEndedDots = false;
-      } else if (!hasStartedDots && item < currentPage ) {
+      } else if (!hasStartedDots && item < currentPage) {
         pageList.push(<span key={item}>...</span>);
         hasStartedDots = true;
       } else if (!hasEndedDots && item > currentPage && item < totalPages) {
         pageList.push(<span key={item}>...</span>);
         hasEndedDots = true;
       }
-      })
+    });
     return pageList;
   };
 
