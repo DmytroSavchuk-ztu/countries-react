@@ -48,8 +48,9 @@ function Home() {
     <>
       <Header />
       <div className="container">
+        
         <div className="contries">
-          <CountriesList allCountry={currentCountry} />
+          <CountriesList contriesOnPage={currentCountry} allContries={allCountries} />
         </div>
         <Pagination
           currentPage={currentPage}

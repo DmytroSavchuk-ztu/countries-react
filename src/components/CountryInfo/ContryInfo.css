@@ -1,0 +1,36 @@
+.aboutCountry {
+    outline: 3px solid rgb(129, 126, 126);
+    background: rgb(35, 44, 54);
+    width: 60%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+  /* .aboutCountry > * {
+    outline: 1px solid white;
+  } */
+  .country_name {
+    width: 70%;
+    font-family: Montserrat;
+    color: rgb(178, 214, 245);
+    font-size: 20px;
+    align-items: center;
+  }
+  .country_name p {
+      margin-bottom: 10px;
+  }
+  .flag {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    height: 200px;
+    overflow: hidden;
+    width: 70%;
+    margin: 0px 0px 20px 0px;
+  }
+  .flag img {
+      width: 50%;
+      height: 100%;
+  }
