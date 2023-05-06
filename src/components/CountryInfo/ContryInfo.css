@@ -1,36 +1,90 @@
-.aboutCountry {
-    outline: 3px solid rgb(129, 126, 126);
-    background: rgb(35, 44, 54);
-    width: 60%;
-    height: 500px;
+.flags{
+  width: 600px;
+}
+.container_info_about_country{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.country_information_box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: Montserrat;
+  color: rgb(179, 177, 177);
+}
+.name_country{
+  font-weight: 500;
+}
+.country_information{
+}
+p{
+  font-weight: bolder;
+  color: rgb(204, 202, 202);
+}
+span {
+  font-weight: 100;
+   font-size: 24px;
+   color: rgb(179, 177, 177);
+}
+.flags_block{
+  margin: 0px 60px 0px 0px;
+}
+.name_country{
+  font-size: 60px;
+}
+.info_block{
+
+}
+.info_block div{
+  margin: 0px 0px 40px 0px;
+}
+.info{
+  display: flex;
+  flex-direction: row;
+}
+.info p{
+  max-width: 400px;
+}
+.info div{
+  margin: 10px 40px 0px 0px;
+}
+.info_block button{
+  margin: 0px 3px 3px 3px;
+  width: 70px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1f252d;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color:rgb(179, 177, 177);
+}
+.info_block button:hover{
+  background-color: #0d1014;
+}
+.borders{
+  max-width: 600px;
+}
+.languages{
+}
+
+@media(max-width: 1050px){
+  .country_information_box{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    padding: 10px 20px;
   }
-  /* .aboutCountry > * {
-    outline: 1px solid white;
-  } */
-  .country_name {
-    width: 70%;
-    font-family: Montserrat;
-    color: rgb(178, 214, 245);
-    font-size: 20px;
-    align-items: center;
+  .flags_block{
+    margin: 0px 0px 0px 0px;
+
   }
-  .country_name p {
-      margin-bottom: 10px;
+  .info{
+    flex-direction: column;
   }
-  .flag {
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-    height: 200px;
-    overflow: hidden;
-    width: 70%;
-    margin: 0px 0px 20px 0px;
-  }
-  .flag img {
-      width: 50%;
-      height: 100%;
-  }
+}
+@media(max-width: 980px){
+  
+}

@@ -1,2 +1,8 @@
 .map{
+    width: 50%;
+    height: 50vh;
+}
+.map_container{
+    display: flex;
+    justify-content: center;
 }

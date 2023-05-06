@@ -2,8 +2,9 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  font-family: Montserrat;
   align-items: center;
-  margin: 50px 0px 0px 0px;
+  margin: 70px 0px 0px 0px;
   justify-content: center;
 }
 .pagination button {
@@ -60,4 +61,16 @@ span {
 }
 .arrow_left {
     transform: rotate(-135deg);
+}
+
+@media(max-width:880px){
+  .pagination {
+    margin: 20px 0px 0px 0px;
+  }
+}
+@media(max-width:610px){
+  .pagination button {
+    font-size: 13px;
+    padding: 5px 5px;
+  }
 }

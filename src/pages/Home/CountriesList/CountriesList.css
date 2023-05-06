@@ -11,7 +11,8 @@
   width: 100%;
   height: 50px;
   border: 1px solid white;
-  font-size: 13px;
+  font-family: Montserrat;
+  font-size: 14px;
   padding: 15px 10px;
   color: whitesmoke;
   display: flex;
@@ -31,11 +32,13 @@
   width: 250px;
   justify-content: space-between;
   align-items: center;
+
 }
 .country_info img {
   margin: 0px 20px 0px 0px;
 }
 .country_box:hover {
+  margin: 0px 0px 0px 20px;
   background: #2a2c4d;
 }
 .country_box img {
@@ -50,14 +53,45 @@ img {
   align-items: center;
   flex-direction: column;
 }
-.aboutCountry_container input{
+.input_box{
   width: 40%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-family: Montserrat;
+  margin: 0px 0px 20px 0px;
 }
-.aboutCountry {
+.input_box input{
+  outline: none;
+  outline-offset: none;
+  border: 1px solid rgb(19, 11, 58);
+  height: 25px;
+  margin: 0px 10px 0px 0px;
+  padding: 10px 20px;
+  font-size: 17px;
+  border-radius: 20px;
+  background: rgb(47, 53, 58);
+  color: rgb(182, 178, 178);
+
+}
+.input_box button{
+  background: rgb(47, 53, 58);
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(182, 178, 178);
+  height: 100%;
+}
+.active:hover{
+  background: rgb(65, 69, 71);
+  cursor: pointer;
+  outline: 5px solid rgb(13, 13, 136);
+}
+.short_info_container {
   outline: 3px solid rgb(129, 126, 126);
   background: rgb(35, 44, 54);
-  width: 40%;
-  height: 80%;
+  flex: 0 1 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -66,27 +100,39 @@ img {
 /* .aboutCountry > * {
   outline: 1px solid white;
 } */
-.country_name {
-  width: 70%;
+.country_short_info {
   font-family: Montserrat;
   color: rgb(178, 214, 245);
   font-size: 20px;
   align-items: center;
+  
 }
-.country_name p {
+.country_short_info p {
     margin-bottom: 10px;
 }
 .flag {
-  display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-  height: 200px;
-  overflow: hidden;
-  width: 70%;
+  height: 250px;
+  width: 450px;
   margin: 0px 0px 20px 0px;
 }
 .flag img {
     width: 100%;
     height: 100%;
+    border: 3px solid black;
 }
 
+@media(max-width: 1460px){
+  .input_box{
+    width: 70%;
+  }
+}
+@media(max-width: 880px){
+  .short_info_container{
+    display: none;
+  }
+  .contries{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}

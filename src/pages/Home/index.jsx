@@ -7,17 +7,17 @@ import CountriesList from "./CountriesList";
 import Pagination from "../../components/Pagination";
 
 function Home() {
-  const [allCountries, setAllCountries] = useState([]);
+  const [allContries, setAllCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(
     Number(sessionStorage.getItem("pageNum"))
   );
   const [countItems, setCountItems] = useState(10);
 
-  const countPages = allCountries.length / countItems;
+  const countPages = allContries.length / countItems;
 
   const lastCountryIndex = currentPage * countItems;
   const firstCountryIndex = lastCountryIndex - countItems;
-  const currentCountry = allCountries.slice(
+  const currentCountry = allContries.slice(
     firstCountryIndex,
     lastCountryIndex
   );
@@ -50,7 +50,7 @@ function Home() {
       <div className="container">
         
         <div className="contries">
-          <CountriesList contriesOnPage={currentCountry} allContries={allCountries} />
+          <CountriesList contriesOnPage={currentCountry} Contries={allContries} />
         </div>
         <Pagination
           currentPage={currentPage}

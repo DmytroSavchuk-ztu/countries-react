@@ -5,9 +5,11 @@ import Header from "../../components/Header";
 import axios from "axios";
 import CountryMap from "../../components/CountryMap";
 import CountryInfo from "../../components/CountryInfo";
+import Poroshenko from "../../components/Poroshenko";
 
 function AboutCountry() {
-  const { nameCountry } = useParams();
+
+  const { indexCountry } = useParams();
   const [country, setCountry] = useState(null);
   const [showInfoAboutCountry, setShowInfoAboutCountry] = useState(true)
   const [showCountryMap, setShowCountryMap] = useState(false)
@@ -16,7 +18,7 @@ function AboutCountry() {
     async function fetchCountry() {
       try {
         const response = await axios(
-          `https://restcountries.com/v3.1/name/${nameCountry}`
+          `https://restcountries.com/v3.1/alpha/${indexCountry}`
         );
         setCountry(response.data[0]);
       } catch {
@@ -24,8 +26,11 @@ function AboutCountry() {
       }
     }
     fetchCountry();
-  }, [nameCountry]);
+  }, [indexCountry]);
 
+  if (indexCountry === "RUS" || indexCountry === "RU"){
+    return <Poroshenko/>
+  }
   if (!country) {
     return <div>Loading...</div>;
   }

@@ -1,0 +1,9 @@
+.mem{
+    display: flex;
+    justify-content: center;
+    padding: 50px 0px;
+}
+.mem img{
+    width: 600px;
+    height: 600px;
+}

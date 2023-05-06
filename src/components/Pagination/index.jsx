@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
@@ -8,10 +8,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     pageNumbers.push(i);
   }
 
+  const [numberOfpagesOnWhichSide,setNumberOfpagesOnWhichSide] = useState(2);
+
   const renderPageNumbers = () => {
     const pageList = [];
 
-    const numberOfpagesOnWhichSide = 2;
     let hasStartedDots = false;
     let hasEndedDots = false;
 
