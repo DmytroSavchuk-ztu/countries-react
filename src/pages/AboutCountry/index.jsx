@@ -50,7 +50,7 @@ function AboutCountry() {
     <>
       <Header />
       <div className="buttons">
-        <Link className="goBack" to="/"><button className="button_">go back</button></Link>
+        <Link className="goBack" to="/"><button className="button_">go back to list</button></Link>
         <button onClick={() => {setShowCountryMap(false); setShowInfoAboutCountry(true)}} className={showInfoAboutCountry? "button_ active":'button_'}>information about country</button>
         <button onClick={() => {setShowCountryMap(true); setShowInfoAboutCountry(false)}} className={showCountryMap? "button_ active":'button_'}>show country on map</button>
       </div>

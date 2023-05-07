@@ -7,7 +7,7 @@ function CountryInfo({chosenCountry}) {
 
     const currenciesKeys = chosenCountry.currencies === undefined ? null : Object.keys(chosenCountry.currencies);
     const langKeys = Object.keys(chosenCountry.languages);
-    const nativeName = Object.keys(chosenCountry.name.nativeName)[0];
+    const nativeNames = Object.keys(chosenCountry.name.nativeName);
 
   return (
     <>
@@ -23,7 +23,7 @@ function CountryInfo({chosenCountry}) {
                 <div className="info_block">
                     <div className="info">
                         <div>
-                            <p>Native name: <span>{chosenCountry.name.nativeName[nativeName].common}</span></p>
+                            <p>Native names: <span>{nativeNames.map((item, index) => `${chosenCountry.name.nativeName[item].common}${nativeNames[index+1] === undefined? "" : ","} `)}</span></p>
                             <p>Population: <span>{chosenCountry.population  === undefined ? "-" : chosenCountry.population }</span></p>
                             <p>Region: <span>{chosenCountry.region === undefined ? "-" : chosenCountry.region}</span></p>
                             <p>Sub Region: <span>{chosenCountry.subregion  === undefined ? "-" : chosenCountry.subregion }</span></p>
@@ -35,7 +35,7 @@ function CountryInfo({chosenCountry}) {
                         </div>
                     </div>
                     <div className="borders">
-                        <p>Borders: {chosenCountry.borders === undefined? "-" : chosenCountry.borders.map((item) => (<Link key={item} to={`/About/${item}`}><button>{item}</button></Link>))}</p>
+                        <p>Neighboring countries: {chosenCountry.borders === undefined? "-" : chosenCountry.borders.map((item) => (<Link key={item} to={`/About/${item}`}><button>{item}</button></Link>))}</p>
                     </div>
                 </div>
                 </div>

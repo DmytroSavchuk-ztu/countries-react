@@ -4,6 +4,7 @@ body{
 }
 #root {
   margin: 0 auto;
+  max-width: 1440px;
   padding: 0px 15px;
   height: 100%;
   display: flex;

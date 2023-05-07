@@ -11,10 +11,10 @@ function CountriesList({ contriesOnPage, Contries }) {
   const [countriesSearch, setCountriesSearch] = useState([])
   const [contryInSearch, setContryInSearch] = useState(null)
 
-  const handleMouseEnter = (id) => {
+  const handleMouseEnter = (contry) => {
     setShowDivAboutCountry({
       isVisible: true,
-      object: contriesOnPage.find((item) => item.id === id),
+      object: contry,
     });
   };
   const handleMouseLeave = () => {
@@ -31,6 +31,7 @@ function CountriesList({ contriesOnPage, Contries }) {
     }
 
     const resultArr = Contries.filter((item) => String(item.name.common).toLowerCase().includes(e.target.value.toLowerCase()))
+
     resultArr.length === 1 ? resultArr[0].name.common.toLowerCase() === e.target.value.toLowerCase() ? setContryInSearch(resultArr[0]) : setContryInSearch(null) :
 
     setCountriesSearch(resultArr)
@@ -40,7 +41,7 @@ function CountriesList({ contriesOnPage, Contries }) {
       <div className="countries_container">
         {contriesOnPage.map((item) => (
           <Link
-            onMouseEnter={() => handleMouseEnter(item.id)}
+            onMouseEnter={() => handleMouseEnter(item)}
             onMouseLeave={() => handleMouseLeave()}
             key={item.name.common}
             to={`/about/${item.cca2}`}
@@ -69,6 +70,7 @@ function CountriesList({ contriesOnPage, Contries }) {
             
           )}
         </datalist>
+        
         {showDivAboutCountry.isVisible && (
           <div className="short_info_container">
             <div className="about_country">

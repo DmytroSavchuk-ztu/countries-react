@@ -54,7 +54,7 @@ img {
   flex-direction: column;
 }
 .input_box{
-  width: 40%;
+  width: 70%;
   display: flex;
   justify-content: center;
   position: relative;
