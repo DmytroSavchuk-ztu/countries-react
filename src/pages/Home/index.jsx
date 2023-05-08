@@ -46,7 +46,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header allContries={allContries}/>
       <div className="container">
         
         <div className="contries">

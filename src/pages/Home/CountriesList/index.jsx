@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 
 import "./CountriesList.css";
 
-function CountriesList({ contriesOnPage, Contries }) {
+function CountriesList({ contriesOnPage}) {
   const [showDivAboutCountry, setShowDivAboutCountry] = useState({
     isVisible: false,
     object: null,
   });
-  const [countriesSearch, setCountriesSearch] = useState([])
-  const [contryInSearch, setContryInSearch] = useState(null)
 
   const handleMouseEnter = (contry) => {
     setShowDivAboutCountry({
@@ -22,19 +20,6 @@ function CountriesList({ contriesOnPage, Contries }) {
       isVisible: false,
       object: null,
     });
-  };
-  const handleSearchChange = (e) => {
-    if (e.target.value === '') {
-      setCountriesSearch([])
-      setContryInSearch(null)
-      return
-    }
-
-    const resultArr = Contries.filter((item) => String(item.name.common).toLowerCase().includes(e.target.value.toLowerCase()))
-
-    resultArr.length === 1 ? resultArr[0].name.common.toLowerCase() === e.target.value.toLowerCase() ? setContryInSearch(resultArr[0]) : setContryInSearch(null) :
-
-    setCountriesSearch(resultArr)
   };
   return (
     <>
@@ -56,21 +41,7 @@ function CountriesList({ contriesOnPage, Contries }) {
           </Link>
         ))}
       </div>
-      <div className="aboutCountry_container">
-        <div className="input_box">
-          <input placeholder="Enter country name" onChange={handleSearchChange} list="countries" type="text" />
-          <Link to={ contryInSearch === null ? '' : `/about/${contryInSearch.cca2}`}>
-            <button className= {`submit ${contryInSearch === null ? '' : 'active'}`}>SUBMIT</button>
-          </Link>
-        </div>
-        <datalist id="countries">
-          {countriesSearch.map((item) => (
-            <option key={item.name.common} value={item.name.common}></option>
-          )
-            
-          )}
-        </datalist>
-        
+      <div className="aboutCountry_container">      
         {showDivAboutCountry.isVisible && (
           <div className="short_info_container">
             <div className="about_country">

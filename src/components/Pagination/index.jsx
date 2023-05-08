@@ -8,7 +8,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     pageNumbers.push(i);
   }
 
-  const [numberOfpagesOnWhichSide,setNumberOfpagesOnWhichSide] = useState(2);
+  const numberOfpagesOnWhichSide = window.innerWidth <= 645 ? 1 : 2;
 
   const renderPageNumbers = () => {
     const pageList = [];
@@ -19,9 +19,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     pageNumbers.map((item) => {
       if (
         // Умови за яких буде відображатися кнопка з номером сторінки
-        ((currentPage === 1 || currentPage <= numberOfpagesOnWhichSide+1) && item <= numberOfpagesOnWhichSide*2+2) ||
+        ((currentPage === 1 || currentPage <= numberOfpagesOnWhichSide + 2) && item <= numberOfpagesOnWhichSide*2+3) ||
         ((currentPage === totalPages || currentPage >= totalPages - numberOfpagesOnWhichSide-1) &&
-          item >= totalPages - (numberOfpagesOnWhichSide*2+1)) ||
+          item >= totalPages - (numberOfpagesOnWhichSide*2+2)) ||
         item === 1 ||
         item === totalPages ||
         (item >= currentPage - numberOfpagesOnWhichSide &&
@@ -40,10 +40,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         hasStartedDots = false;
         hasEndedDots = false;
       } else if (!hasStartedDots && item < currentPage) {
-        pageList.push(<span key={item}>...</span>);
+        pageList.push(<span key={item}>. . .</span>);
         hasStartedDots = true;
       } else if (!hasEndedDots && item > currentPage && item < totalPages) {
-        pageList.push(<span key={item}>...</span>);
+        pageList.push(<span key={item}>. . .</span>);
         hasEndedDots = true;
       }
     });
@@ -58,7 +58,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           currentPage === 1 ? "arrow_disabled" : ""
         }`}
       ></div>
-      {renderPageNumbers()}
+      <div className="pages">{renderPageNumbers()}</div>
       <div
         onClick={() =>
           onPageChange(

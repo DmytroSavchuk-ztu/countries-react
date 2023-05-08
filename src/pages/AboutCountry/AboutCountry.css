@@ -18,7 +18,7 @@
     transition: all 8ms ease;    
 }
 .goBack{
-    display: contents;
+    color: #a7a4a4;
 }
 .buttons button:hover{
     background-color: #0e1013;   
@@ -28,3 +28,17 @@
     background: #0e1013;   
     outline: 3px solid #011738;
 }
+
+@media(max-width: 680px){
+    .flags{
+      width: 250px;
+    }
+    .buttons{
+        flex-wrap: wrap;
+        margin: 0px 0px 20px 0px;
+    }
+    .buttons *{
+        margin: 0px 5px 20px 5px;
+        height: 60px;
+    }
+  }
