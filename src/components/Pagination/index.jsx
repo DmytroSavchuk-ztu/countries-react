@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pageNumbers = [];
-  
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const numberOfpagesOnWhichSide = window.innerWidth <= 645 ? 1 : 2;
 

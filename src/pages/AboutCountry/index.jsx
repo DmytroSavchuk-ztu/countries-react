@@ -11,9 +11,23 @@ function AboutCountry() {
 
   const { indexCountry } = useParams();
   const [country, setCountry] = useState(null);
+  const [allCountries, setAllCountries] = useState([]);
   const [showInfoAboutCountry, setShowInfoAboutCountry] = useState(true)
   const [showCountryMap, setShowCountryMap] = useState(false)
-  let showDiv
+  let showDiv;
+
+  useEffect(
+    () => async () => {
+      try {
+        const result = await axios("https://restcountries.com/v3.1/all");
+
+        setAllCountries(result.data);
+      } catch {
+        setAllCountries("Error");
+      }
+    },
+    []
+  );
   useEffect(() => {
     async function fetchCountry() {
       try {
@@ -28,14 +42,14 @@ function AboutCountry() {
     fetchCountry();
   }, [indexCountry]);
 
-  if (indexCountry === "RUS" || indexCountry === "RU"){
-    return <Poroshenko/>
-  }
   if (!country) {
     return <div>Loading...</div>;
   }
   if (country === "Error") {
     return <div>There was an error loading the country.</div>;
+  }
+  if (indexCountry === "RUS" || indexCountry === "RU"){
+    return <Poroshenko/>
   }
 
   if (showInfoAboutCountry){
@@ -48,7 +62,7 @@ function AboutCountry() {
 
   return (
     <>
-      <Header />
+      <Header allContries={allCountries}/>
       <div className="buttons">
         <Link className="goBack" to="/"><button className="button_">go back to list</button></Link>
         <button onClick={() => {setShowCountryMap(false); setShowInfoAboutCountry(true)}} className={showInfoAboutCountry? "button_ active":'button_'}>information about country</button>
