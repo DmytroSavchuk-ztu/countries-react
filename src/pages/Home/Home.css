@@ -21,4 +21,9 @@ input {
     margin: 10px 0px 20px 0px;
     padding: 0px 10px;
 }
-@media(max-width:)
+.btnsSort_container{
+    color: white;
+    width: 100px;
+    outline: 2px solid gray;
+    padding: 10px
+}

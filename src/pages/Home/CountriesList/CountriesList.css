@@ -38,7 +38,7 @@
   margin: 0px 20px 0px 0px;
 }
 .country_box:hover {
-  margin: 0px 0px 0px 20px;
+  margin: 0px 0px 0px 5px;
   background: #2a2c4d;
 }
 .country_box img {
@@ -64,9 +64,7 @@ img {
   padding: 10px 20px;
   min-height: 480px;
 }
-/* .aboutCountry > * {
-  outline: 1px solid white;
-} */
+
 .country_short_info {
   font-family: Montserrat;
   color: rgb(178, 214, 245);

@@ -5,7 +5,6 @@ import "./header.css"
 function Header({allContries}) {
   const [countriesSearch, setCountriesSearch] = useState([])
   const [contryInSearch, setContryInSearch] = useState(null)
-  console.log(allContries)
   const handleSearchChange = (e) => {
     if (e.target.value === '') {
       setCountriesSearch([])
@@ -13,19 +12,10 @@ function Header({allContries}) {
       return
     }
 
-    const resultArr = allContries.filter((item) => String(item.name.common).toLowerCase().includes(e.target.value.toLowerCase()))
+    const resultArr = allContries.filter((item) => String(item.name.common).toLowerCase().startsWith(e.target.value.toLowerCase()))
 
     resultArr.length === 1 ? resultArr[0].name.common.toLowerCase() === e.target.value.toLowerCase() ? setContryInSearch(resultArr[0]) : setContryInSearch(null) :
-    // if(resultArr.length === 1){
-    //   if(resultArr[0].name.common.toLowerCase() === e.target.value.toLowerCase()){
-    //     setContryInSearch(resultArr[0])
-    //   }
-    //   else{
-    //     setContryInSearch(null)
-    //   }
-    // }
 
-    console.log(resultArr)
     setCountriesSearch(resultArr)
   };
 

@@ -43,10 +43,28 @@ function AboutCountry() {
   }, [indexCountry]);
 
   if (!country) {
-    return <div>Loading...</div>;
+    return (
+      <div className="message_box">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
   }
   if (country === "Error") {
-    return <div>There was an error loading the country.</div>;
+    return (
+      <div className="message_box">
+        <div className="error">
+          <img
+            src="https://digitalsynopsis.com/wp-content/uploads/2016/12/http-status-codes-dogs.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    );
   }
   if (indexCountry === "RUS" || indexCountry === "RU"){
     return <Poroshenko/>
