@@ -6,8 +6,8 @@ import "./ContryInfo.css"
 function CountryInfo({chosenCountry}) {
 
     const currenciesKeys = chosenCountry.currencies === undefined ? null : Object.keys(chosenCountry.currencies);
-    const langKeys = Object.keys(chosenCountry.languages);
-    const nativeNames = Object.keys(chosenCountry.name.nativeName);
+    const langKeys = Object.keys(chosenCountry.languages === undefined ? [] : chosenCountry.languages);
+    const nativeNames = Object.keys(chosenCountry.name.nativeName === undefined ? [] : chosenCountry.name.nativeName);
 
   return (
     <>
