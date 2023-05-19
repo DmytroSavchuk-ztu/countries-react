@@ -52,10 +52,10 @@ function CountriesList({ contriesOnPage}) {
                 />
               </div>
               <div className="country_short_info">
-                <p>name: {showDivAboutCountry.object.name.common}</p>
-                <p>capital: {showDivAboutCountry.object.capital}</p>
-                <p>population: {showDivAboutCountry.object.population}</p>
-                <p>region: {showDivAboutCountry.object.region}</p>
+                <p>Name: {showDivAboutCountry.object.name.common}</p>
+                <p>Capital: {showDivAboutCountry.object.capital}</p>
+                <p>Population: {showDivAboutCountry.object.population}</p>
+                <p>Region: {showDivAboutCountry.object.region}</p>
               </div>
             </div>
           </div>
