@@ -178,8 +178,7 @@ function Home() {
   }, [allContries])
   return (
     <>
-      {/* {console.log(regions)} */}
-      <Header allContries={allContries} />
+      <Header allContries={allContries}/>
       <div className={`panel ${isOpenPanel ? "open" : ""}`}>
         <div className="btnsFilter_container">
           <div className="continents_filter">

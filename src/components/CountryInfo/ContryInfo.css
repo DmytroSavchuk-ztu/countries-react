@@ -9,8 +9,8 @@
 .country_information_box{
   display: flex;
   flex-direction: row;
-  justify-content: center;
   font-family: Montserrat;
+  width: 1350px;
   color: rgb(179, 177, 177);
 }
 .name_country{
@@ -68,7 +68,24 @@ span {
 .borders{
   max-width: 600px;
 }
-.languages{
+.tab_buttons{
+  display: flex;
+  width: 100%;
+}
+
+.tab_btn{
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 7px;
+  color: #f3ebeb;
+  font-family: Montserrat;
+  margin: 0px 10px 0px 0px;
+  font-size: 15px;
+  background: rgb(7, 17, 4);
+}
+.active_tab_btn{
+  outline: 4px solid rgb(6, 70, 6);
+
 }
 
 @media(max-width: 1050px){

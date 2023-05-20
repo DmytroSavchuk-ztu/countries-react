@@ -51,7 +51,7 @@ input {
   background: rgb(49, 46, 79);
   transition: all 0.3s ease;
   box-sizing: border-box;
-  padding: 20px 30px;
+  padding: 70px 0px 0px 20px;
   z-index: 20;
 }
 
@@ -113,7 +113,15 @@ input {
 .shifted {
   padding: 0px 0px 0px 20px;
   transition: all 0.3s ease;
-  margin-left: 280px;
+  padding-left: 100px;
+}
+.wrap{
+  width: 100%;
+}
+@media (max-width: 1450px) {
+  .shifted {
+    margin-left: 200px;
+  }
 }
 @media (max-width: 1220px) {
   .panel {
@@ -121,6 +129,6 @@ input {
     width: 150px;
   }
   .shifted {
-    margin-left: 140px;
+    margin-left: 50px;
   }
 }

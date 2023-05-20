@@ -21,7 +21,7 @@ function Header({allContries}) {
 
   return (
     <>
-      <div className="header header_container">
+      <div className={`header header_container`} >
         <div className="logo">
           <Link to={"/"}>COUNTRIES LIST</Link>
         </div>
