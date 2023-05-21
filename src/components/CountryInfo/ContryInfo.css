@@ -26,6 +26,7 @@ span {
   font-weight: 100;
    font-size: 24px;
    color: rgb(179, 177, 177);
+   margin: 0px 0px 0px 5px;
 }
 .flags_block{
   margin: 0px 60px 0px 0px;
@@ -44,6 +45,17 @@ span {
 }
 .info p{
   max-width: 400px;
+}
+.info img{
+
+}
+.coat_photo{
+  display: flex;
+  align-items: center;
+}
+.coat_photo img{
+  display: flex;
+  margin: 0px 0px 0px 5px;
 }
 .info div{
   margin: 10px 40px 0px 0px;
@@ -71,6 +83,7 @@ span {
 .tab_buttons{
   display: flex;
   width: 100%;
+  margin: 15px 0px 0px 0px;
 }
 
 .tab_btn{
