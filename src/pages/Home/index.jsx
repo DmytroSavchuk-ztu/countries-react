@@ -180,9 +180,11 @@ function Home() {
     <>
       <Header allContries={allContries}/>
       <div className={`panel ${isOpenPanel ? "open" : ""}`}>
+      <div onClick={() => setIsOpenPanel(false)} className="closeModal"></div>
         <div className="btnsFilter_container">
           <div className="continents_filter">
-            <p>CONTINENTS</p>
+            <p className="continents">CONTINENTS</p>
+            <div className="continents_btns">
             {Object.keys(regions).map((item) => (
               <div
                 onClick={() => sortContinents(item)}
@@ -194,9 +196,13 @@ function Home() {
                 {item}
               </div>
             ))}
+            </div>
           </div>
           <div className="subregions_filter">
-            {activeContinent != null && <p>SUBREGIONS</p>}
+            <p className="subregions">
+            {activeContinent != null && 'SUBREGIONS'}
+            </p>
+            <div className="subregions_btns">
             {activeContinent != null &&
               Array.from(regions[activeContinent]).map(
                 (item) =>
@@ -212,6 +218,7 @@ function Home() {
                     </div>
                   )
               )}
+            </div>
           </div>
         </div>
       </div>

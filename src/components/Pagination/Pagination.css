@@ -1,7 +1,6 @@
 .pagination {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   font-family: Montserrat;
   align-items: center;
   margin: 50px 0px 0px 0px;
@@ -86,8 +85,6 @@
 }
 @media(max-width:500px){
   .arrow{
-    width: 8px;
-    height: 8px;
-    margin: 20px 0px 20px 0px;
+      display: none;
   }
 }

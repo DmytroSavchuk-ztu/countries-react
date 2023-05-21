@@ -127,5 +127,7 @@ span {
   .flags{
     width: 250px;
   }
-
+  .name_country{
+    font-size: 50px;
+  }
 }
