@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css"
 
-function Header({allContries}) {
+function Header({allContries, headerText}) {
   const [countriesSearch, setCountriesSearch] = useState([])
   const [contryInSearch, setContryInSearch] = useState(null)
   const handleSearchChange = (e) => {
@@ -21,22 +21,31 @@ function Header({allContries}) {
 
   return (
     <>
-      <div className={`header header_container`} >
+      <div className={`header header_container`}>
         <div className="logo">
-          <Link to={"/"}>COUNTRIES LIST</Link>
+          {headerText}
         </div>
         <div className="input_box">
-        <input placeholder="Enter country name" onChange={handleSearchChange} list="countries" type="text" />
-          <Link to={ contryInSearch === null ? '' : `/about/${contryInSearch.cca2}`}>
-            <button className = {contryInSearch === null ? 'submit' : 'submit active'}>SUBMIT</button>
+          <input
+            placeholder="Enter country name"
+            onChange={handleSearchChange}
+            list="countries"
+            type="text"
+          />
+          <Link
+            to={contryInSearch === null ? "" : `/about/${contryInSearch.cca3}`}
+          >
+            <button
+              className={contryInSearch === null ? "submit" : "submit active"}
+            >
+              SUBMIT
+            </button>
           </Link>
         </div>
         <datalist id="countries">
           {countriesSearch.map((item) => (
             <option key={item.name.common} value={item.name.common}></option>
-          )
-            
-          )}
+          ))}
         </datalist>
       </div>
     </>

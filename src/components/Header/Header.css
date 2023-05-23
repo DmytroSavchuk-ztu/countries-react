@@ -14,7 +14,7 @@
     justify-content: space-between;
     margin: 10px 0px 20px 0px;
 }
-.header a {
+.header {
     color: #949499;
 }
 .input_box{
@@ -46,7 +46,7 @@
     padding: 10px;
     border-radius: 10px;
     color: rgb(182, 178, 178);
-    height: 100%;
+    height: 45px;
   }
   .active:hover{
     background: rgb(65, 69, 71);

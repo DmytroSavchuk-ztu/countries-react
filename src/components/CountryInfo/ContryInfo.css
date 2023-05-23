@@ -1,6 +1,11 @@
 .flags{
   width: 600px;
 }
+a{
+  cursor: pointer;
+  color: rgb(179, 177, 177);
+  font-family: Montserrat;
+}
 .container_info_about_country{
   width: 100%;
   display: flex;

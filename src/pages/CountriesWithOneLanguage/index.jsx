@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
-import "../../App.css";
-import "./Home.css";
+import "../Home/Home.css";
+import "./CountriesWithOneLanguage.css";
 import Header from "../../components/Header";
 import axios, { all } from "axios";
-import CountriesList from "./CountriesList";
+import CountriesList from "../Home/CountriesList";
 import Pagination from "../../components/Pagination";
 import Sorts from "../../components/Sorts";
+import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-function Home() {
+function CountriesWithOneLanguage() {
+  const { langName } = useParams();
   const [allContries, setAllCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(
     Number(sessionStorage.getItem("pageNum"))
   );
+  console.log(langName);
   const [filtredCountries, setFiltredCountries] = useState([]);
   const [countItems, setCountItems] = useState(10);
   const [isOpenPanel, setIsOpenPanel] = useState(false);
   const [regions, setRegions] = useState({});
-
   const countPages = Math.ceil(
     filtredCountries.length === 0
       ? allContries.length / countItems
       : filtredCountries.length / countItems
   );
-
+    const navigate = useNavigate()
   const lastCountryIndex = currentPage * countItems;
   const firstCountryIndex = lastCountryIndex - countItems;
   const currentCountry = (filtredCountries.length === 0
@@ -37,32 +40,12 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       if (localStorage.getItem("countries") !== "null") {
-        setAllCountries(JSON.parse(localStorage.getItem("countries")));
-        const tmp = JSON.parse(localStorage.getItem("countries")).reduce(
-          (acc, country) => {
-            const { continents, subregion } = country;
-            if (acc[continents]) {
-              acc[continents].add(subregion);
-            } else {
-              acc[continents] = new Set([subregion]);
-            }
-            return acc;
-          },
-          {}
+        const allContriesList = JSON.parse(localStorage.getItem("countries"));
+        setAllCountries(allContriesList);
+        const filteredCountries = allContriesList.filter(
+          (country) => country.languages && country.languages[langName]
         );
-        setRegions(tmp);
-        return;
-      }
-      try {
-        const result = await axios("http://46.101.96.179/all");
-        const resultId = result.data.map((item, i) => {
-          if (item.languages && item.languages["de"]) {
-            item.languages["deu"] = item.languages["de"];
-            delete item.languages["de"];
-          }
-          return { ...item, id: i + 1 };
-        });
-        const tmp = resultId.reduce((acc, country) => {
+        const tmp = filteredCountries.reduce((acc, country) => {
           const { continents, subregion } = country;
           if (acc[continents]) {
             acc[continents].add(subregion);
@@ -72,20 +55,50 @@ function Home() {
           return acc;
         }, {});
         setRegions(tmp);
-        setAllCountries(resultId);
-        localStorage.setItem("countries", JSON.stringify(resultId));
+        setAllCountries(filteredCountries);
+        return;
+      }
+      try {
+        const result = await axios("http://46.101.96.179/all");
+        const resultId = result.data.map((item, i) => {
+          return { ...item, id: i + 1 };
+        });
+        const filteredCountries = resultId.filter(
+          (country) => country.languages && country.languages[langName]
+        );
+        const tmp = filteredCountries.reduce((acc, country) => {
+          const { continents, subregion } = country;
+          if (acc[continents]) {
+            acc[continents].add(subregion);
+          } else {
+            acc[continents] = new Set([subregion]);
+          }
+          return acc;
+        }, {});
+        setRegions(tmp);
+        setAllCountries(filteredCountries);
       } catch {
         setAllCountries([]);
       }
     };
-
     fetchData();
   }, []);
+
   return (
     <>
-      <Header allContries={allContries} headerText={"COUNTRIES LIST"} />
+      <Header
+        allContries={allContries}
+        headerText={`COUNTRIES THAT SPEAKS ${langName.toUpperCase()}`}
+      />
       <div className="container">
         <div className={`main_content ${isOpenPanel ? "shifted" : ""}`}>
+          <button
+            className="button"
+            onClick={() => navigate(-1)}
+          >{`<=BACK`}</button>
+          <Link className="button" to="/">
+            <button className="">go back to list</button>
+          </Link>
           <Sorts
             allContries={allContries}
             setCountries={setAllCountries}
@@ -110,4 +123,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default CountriesWithOneLanguage;

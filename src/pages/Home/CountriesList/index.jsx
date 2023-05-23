@@ -13,7 +13,7 @@ function CountriesList({ contriesOnPage}) {
     setShowDivAboutCountry({
       isVisible: true,
       object: contry,
-    });
+    });3
   };
   const handleMouseLeave = () => {
     setShowDivAboutCountry({
@@ -29,7 +29,7 @@ function CountriesList({ contriesOnPage}) {
             onMouseEnter={() => handleMouseEnter(item)}
             onMouseLeave={() => handleMouseLeave()}
             key={item.name.common}
-            to={`/about/${item.cca2}`}
+            to={`/about/${item.cca3}`}
           >
             <div className="country_box">
               <div className="index">{item.id}</div>

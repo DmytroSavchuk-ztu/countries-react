@@ -5,6 +5,7 @@
     justify-content: center;
 }
 .button_{
+  height: 50px;
     margin: 0px 20px 0px 20px;
     border-radius: 8px;
     border: 1px solid transparent;
@@ -15,7 +16,8 @@
     font-weight: 500;
     background: #1f252d;
     cursor: pointer;
-    transition: all 8ms ease;    
+    transition: all 8ms ease;  
+    text-align: center;  
 }
 .goBack{
     color: #a7a4a4;

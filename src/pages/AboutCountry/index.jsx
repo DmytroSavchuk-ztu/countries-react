@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import "./AboutCountry.css"
+import { Link, useParams, useNavigate } from "react-router-dom";
+import "./AboutCountry.css";
 import Header from "../../components/Header";
 import axios from "axios";
 import CountryMap from "../../components/CountryMap";
@@ -8,39 +8,24 @@ import CountryInfo from "../../components/CountryInfo";
 import Poroshenko from "../../components/Poroshenko";
 
 function AboutCountry() {
-
   const { indexCountry } = useParams();
   const [country, setCountry] = useState(null);
   const [allCountries, setAllCountries] = useState([]);
-  const [showInfoAboutCountry, setShowInfoAboutCountry] = useState(true)
-  const [showCountryMap, setShowCountryMap] = useState(false)
+  const [showInfoAboutCountry, setShowInfoAboutCountry] = useState(true);
+  const [showCountryMap, setShowCountryMap] = useState(false);
   let showDiv;
 
+  const navigate = useNavigate();
   useEffect(
-    () => async () => {
-      try {
-        const result = await axios("https://restcountries.com/v3.1/all");
-
-        setAllCountries(result.data);
-      } catch {
-        setAllCountries("Error");
-      }
+    () => {
+      setAllCountries(JSON.parse(localStorage.getItem("countries")));
+      const tmp = JSON.parse(localStorage.getItem("countries")).find(
+        (item) => item.cca3 === indexCountry
+      );
+      setCountry(tmp);
     },
-    []
+    [indexCountry]
   );
-  useEffect(() => {
-    async function fetchCountry() {
-      try {
-        const response = await axios(
-          `https://restcountries.com/v3.1/alpha/${indexCountry}`
-        );
-        setCountry(response.data[0]);
-      } catch {
-        setCountry("Error");
-      }
-    }
-    fetchCountry();
-  }, [indexCountry]);
 
   if (!country) {
     return (
@@ -66,25 +51,52 @@ function AboutCountry() {
       </div>
     );
   }
-  if (indexCountry === "RUS" || indexCountry === "RU"){
-    return <Poroshenko/>
+  if (
+    indexCountry === "RUS" ||
+    indexCountry === "RU" ||
+    indexCountry === "BLR"
+  ) {
+    return <Poroshenko />;
   }
 
-  if (showInfoAboutCountry){
-    showDiv = <CountryInfo chosenCountry={country}></CountryInfo>
+  if (showInfoAboutCountry) {
+    showDiv = <CountryInfo chosenCountry={country}></CountryInfo>;
   }
-  if (showCountryMap){
-    showDiv = <CountryMap chosenCountry={country}></CountryMap>
-
+  if (showCountryMap) {
+    showDiv = <CountryMap chosenCountry={country}></CountryMap>;
   }
-
   return (
     <>
-      <Header allContries={allCountries}/>
+      <Header
+        allContries={allCountries}
+        headerText={country.name.common.toUpperCase()}
+      />
       <div className="buttons">
-        <Link className="goBack" to="/"><button className="button_">go back to list</button></Link>
-        <button onClick={() => {setShowCountryMap(false); setShowInfoAboutCountry(true)}} className={showInfoAboutCountry? "button_ active":'button_'}>information about country</button>
-        <button onClick={() => {setShowCountryMap(true); setShowInfoAboutCountry(false)}} className={showCountryMap? "button_ active":'button_'}>show country on map</button>
+        <button
+          className="button_"
+          onClick={() => navigate(-1)}
+        >{`<=BACK`}</button>
+        <Link className="goBack" to="/">
+          <button className="button_">go back to list</button>
+        </Link>
+        <button
+          onClick={() => {
+            setShowCountryMap(false);
+            setShowInfoAboutCountry(true);
+          }}
+          className={showInfoAboutCountry ? "button_ active" : "button_"}
+        >
+          information about country
+        </button>
+        <button
+          onClick={() => {
+            setShowCountryMap(true);
+            setShowInfoAboutCountry(false);
+          }}
+          className={showCountryMap ? "button_ active" : "button_"}
+        >
+          show country on map
+        </button>
       </div>
       {showDiv}
     </>
