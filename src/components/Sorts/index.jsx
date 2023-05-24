@@ -17,7 +17,6 @@ function Sorts({
   const [activeButton, setActiveButtonSort] = useState(null);
   const [activeContinent, setActiveContinent] = useState(null);
   const [activeSubRegion, setActiveSubRegion] = useState(null);
-  console.log(regions)
   const sortAlph = () => {
     setActiveButtonSort(1);
     setFlagSortAB(!flagSortAB);

@@ -110,8 +110,8 @@ function CountryInfo({chosenCountry}) {
                             key={item}
                             to={`/about/${chosenCountry.cca2}/langCountries/${item}`}
                           >
-                            {chosenCountry.languages[item]}
-                            {langKeys[index + 1] === undefined ? " " : ", "}
+                            <button>{chosenCountry.languages[item]}
+                            {langKeys[index + 1] === undefined ? " " : ", "}</button>
                           </Link>
                         ))}
                       </span>

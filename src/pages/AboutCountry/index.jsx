@@ -18,8 +18,9 @@ function AboutCountry() {
   const navigate = useNavigate();
   useEffect(
     () => {
-      setAllCountries(JSON.parse(localStorage.getItem("countries")));
-      const tmp = JSON.parse(localStorage.getItem("countries")).find(
+      const allCountriesList = JSON.parse(localStorage.getItem("countries"))
+      setAllCountries(allCountriesList);
+      const tmp = allCountriesList.find(
         (item) => item.cca3 === indexCountry
       );
       setCountry(tmp);

@@ -40,11 +40,6 @@
 .subregions_filter p {
   margin: 0px 0px 5px 0px;
 }
-.shifted {
-  padding: 0px 0px 0px 20px;
-  transition: all 0.3s ease;
-  margin-left: 300px;
-}
 .chosen_filter_box {
   display: flex;
   flex-wrap: wrap;
@@ -98,7 +93,7 @@
   text-align: center;
   outline: 2px solid gray;
   padding: 10px;
-  margin: 0px 10px 5px 0px;
+  margin: 0px 10px 10px 0px;
   cursor: pointer;
 }
 .active_btn {
@@ -109,9 +104,6 @@
     flex-wrap: wrap;
     width: 150px;
   }
-  .shifted {
-    margin-left: 150px;
-  }
 }
 @media (max-width: 960px) {
   .panel {
@@ -120,10 +112,7 @@
     height: 100vh;
     z-index: 100;
   }
-  .shifted {
-    padding: 0px 0px 0px 0px;
-    padding-left: 0px;
-  }
+
   .continents_btns, .subregions_btns{
     display: flex;
     flex-direction: row;

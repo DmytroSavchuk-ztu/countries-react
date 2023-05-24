@@ -15,7 +15,7 @@
 }
 .contries {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 .input_ {
   display: flex;
@@ -83,14 +83,23 @@ input {
 .wrap{
   width: 100%;
 }
-
+.shifted {
+  padding: 0px 0px 0px 20px;
+  transition: all 0.3s ease;
+  padding-left: 200px;
+}
+@media (max-width: 1650px) {
+  .shifted {
+    margin-left: 150px;
+  }
+}
 @media (max-width: 1220px) {
   .panel {
     flex-wrap: wrap;
     width: 150px;
   }
   .shifted {
-    margin-left: 150px;
+    margin-left: 0px;
   }
 }
 @media (max-width: 960px) {
@@ -102,7 +111,6 @@ input {
   }
   .shifted {
     padding: 0px 0px 0px 0px;
-    padding-left: 0px;
   }
   .continents_btns, .subregions_btns{
     display: flex;

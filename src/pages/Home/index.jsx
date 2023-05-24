@@ -81,9 +81,21 @@ function Home() {
 
     fetchData();
   }, []);
+  if (allContries === null) {
+    return (
+      <div className="message_box">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
-      <Header allContries={allContries} headerText={"COUNTRIES LIST"} />
+      <Header allContries={allContries} headerText={"COUNTRIES LIST"} isOpenPanel={isOpenPanel} />
       <div className="container">
         <div className={`main_content ${isOpenPanel ? "shifted" : ""}`}>
           <Sorts

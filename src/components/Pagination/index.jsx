@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-  const numberOfpagesOnWhichSide = window.innerWidth <= 645 ? 1 : 2;
-
+  const [numberOfpagesOnWhichSide, setNumberOfpagesOnWhichSide] = useState(2)
+  // const numberOfpagesOnWhichSide = window.innerWidth <= 645 ? 1 : 2;
   const renderPageNumbers = () => {
     const pageList = [];
 
@@ -45,7 +44,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     });
     return pageList;
   };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640){
+        setNumberOfpagesOnWhichSide(1);
+      }
+      else{
+        setNumberOfpagesOnWhichSide(2);
+      }
+    };
 
+    // Добавляем прослушиватель события изменения размера окна
+    window.addEventListener('resize', handleResize);
+
+    // Очищаем прослушиватель при размонтировании компонента
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className="pagination">
       <div

@@ -5,7 +5,7 @@
     justify-content: center;
 }
 .button_{
-  height: 50px;
+  min-height: 60px;
     margin: 0px 20px 0px 20px;
     border-radius: 8px;
     border: 1px solid transparent;

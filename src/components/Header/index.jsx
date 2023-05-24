@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css"
 
-function Header({allContries, headerText}) {
+function Header({allContries, headerText, isOpenPanel}) {
   const [countriesSearch, setCountriesSearch] = useState([])
   const [contryInSearch, setContryInSearch] = useState(null)
   const handleSearchChange = (e) => {
@@ -22,7 +22,7 @@ function Header({allContries, headerText}) {
   return (
     <>
       <div className={`header header_container`}>
-        <div className="logo">
+        <div className={`logo ${isOpenPanel ? "shifted_logo" : ""}`}>
           {headerText}
         </div>
         <div className="input_box">
@@ -38,7 +38,7 @@ function Header({allContries, headerText}) {
             <button
               className={contryInSearch === null ? "submit" : "submit active"}
             >
-              SUBMIT
+              <img src="https://images.vexels.com/media/users/3/143436/isolated/preview/d9be9586ae36ea50337870fec296eb79-desenhos-animados-de-lupa.png" alt="" />
             </button>
           </Link>
         </div>

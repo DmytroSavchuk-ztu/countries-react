@@ -15,7 +15,7 @@ function CountriesWithOneLanguage() {
   const [currentPage, setCurrentPage] = useState(
     Number(sessionStorage.getItem("pageNum"))
   );
-  console.log(langName);
+  const [languageName, setLanguageName] = useState('')
   const [filtredCountries, setFiltredCountries] = useState([]);
   const [countItems, setCountItems] = useState(10);
   const [isOpenPanel, setIsOpenPanel] = useState(false);
@@ -55,6 +55,7 @@ function CountriesWithOneLanguage() {
           return acc;
         }, {});
         setRegions(tmp);
+        setLanguageName(filteredCountries[0].languages[langName])
         setAllCountries(filteredCountries);
         return;
       }
@@ -88,7 +89,7 @@ function CountriesWithOneLanguage() {
     <>
       <Header
         allContries={allContries}
-        headerText={`COUNTRIES THAT SPEAKS ${langName.toUpperCase()}`}
+        headerText={`COUNTRIES THAT SPEAKS ${languageName.toUpperCase()}`}
       />
       <div className="container">
         <div className={`main_content ${isOpenPanel ? "shifted" : ""}`}>

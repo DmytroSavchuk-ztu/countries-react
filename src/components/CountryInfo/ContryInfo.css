@@ -23,6 +23,7 @@ a{
 }
 .country_information{
 }
+
 p{
   font-weight: bolder;
   color: rgb(204, 202, 202);
@@ -105,7 +106,9 @@ span {
   outline: 4px solid rgb(6, 70, 6);
 
 }
-
+.languages button{
+  width: auto;
+}
 @media(max-width: 1050px){
   .country_information_box{
     display: flex;
