@@ -7,7 +7,7 @@
     color: #141423;
 }
 .shifted_logo{
-  margin: 0px 0px 0px 70px;
+  margin: 0px 0px 0px 200px;
   transition: all 0.3s ease;
 }
 .header_container{
@@ -61,7 +61,9 @@
   }
   @media(max-width: 1450px) {
     .shifted_logo{
-      margin: 0px 0px 0px 0px;
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: end;
     }
   }
   @media(max-width: 880px){

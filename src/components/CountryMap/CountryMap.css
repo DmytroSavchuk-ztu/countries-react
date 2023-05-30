@@ -6,3 +6,10 @@
     display: flex;
     justify-content: center;
 }
+@media(max-width: 900px){
+    .map{
+        width: 90%;
+    height: 40vh;
+
+    }
+}

@@ -51,6 +51,7 @@ span {
 }
 .info p{
   max-width: 400px;
+  margin-top: 6px;
 }
 .info img{
 
@@ -83,8 +84,8 @@ span {
 .info_block button:hover{
   background-color: #0d1014;
 }
-.borders{
-  max-width: 600px;
+.borders p{
+  max-width: 670px;
 }
 .tab_buttons{
   display: flex;
@@ -109,6 +110,9 @@ span {
 .languages button{
   width: auto;
 }
+.languages button{
+  padding: 6px;
+}
 @media(max-width: 1050px){
   .country_information_box{
     display: flex;
@@ -116,10 +120,22 @@ span {
   }
   .flags_block{
     margin: 0px 0px 0px 0px;
-
+    display: flex;
+    justify-content: center;
+  }
+  .name_country{
+    text-align: center;
+  }
+  .tab_buttons{
+    justify-content: center;
+    margin-bottom: 10px;
   }
   .info{
-    flex-direction: column;
+    justify-content: center;
+  }
+  .borders{
+    display: flex;
+    justify-content: center;
   }
 }
 @media(max-width: 680px){
@@ -130,10 +146,16 @@ span {
       display: flex;
       justify-content: center;
   }
+  .info{
+    flex-direction: column;
+  }
 }
 @media(max-width: 430px){
   .flags{
     width: 250px;
+  }
+  .info, .info span, .languages button{
+    font-size: 16px;
   }
   .name_country{
     font-size: 50px;

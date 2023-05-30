@@ -16,17 +16,12 @@ function AboutCountry() {
   let showDiv;
 
   const navigate = useNavigate();
-  useEffect(
-    () => {
-      const allCountriesList = JSON.parse(localStorage.getItem("countries"))
-      setAllCountries(allCountriesList);
-      const tmp = allCountriesList.find(
-        (item) => item.cca3 === indexCountry
-      );
-      setCountry(tmp);
-    },
-    [indexCountry]
-  );
+  useEffect(() => {
+    const allCountriesList = JSON.parse(localStorage.getItem("countries"));
+    setAllCountries(allCountriesList);
+    const tmp = allCountriesList.find((item) => item.cca3 === indexCountry);
+    setCountry(tmp);
+  }, [indexCountry]);
 
   if (!country) {
     return (
@@ -72,6 +67,38 @@ function AboutCountry() {
         allContries={allCountries}
         headerText={country.name.common.toUpperCase()}
       />
+      <div className="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label className="menu__btn" htmlFor="menu__toggle">
+          <span></span>
+        </label>
+
+        <ul className="menu__box">
+          <li>
+            <button
+              onClick={() => {
+                setShowCountryMap(false);
+                setShowInfoAboutCountry(true);
+              }}
+              className={showInfoAboutCountry ? "button_ active" : "button_"}
+            >
+              information about country
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                setShowCountryMap(true);
+                setShowInfoAboutCountry(false);
+              }}
+              className={showCountryMap ? "button_ active" : "button_"}
+            >
+              show country on map
+            </button>
+          </li>
+
+        </ul>
+      </div>
       <div className="buttons">
         <button
           className="button_"
@@ -80,6 +107,7 @@ function AboutCountry() {
         <Link className="goBack" to="/">
           <button className="button_">go back to list</button>
         </Link>
+        <div className="buttons_tabs">
         <button
           onClick={() => {
             setShowCountryMap(false);
@@ -98,6 +126,8 @@ function AboutCountry() {
         >
           show country on map
         </button>
+        </div>
+        
       </div>
       {showDiv}
     </>

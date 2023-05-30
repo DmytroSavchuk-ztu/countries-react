@@ -13,7 +13,7 @@ function CountriesWithOneLanguage() {
   const { langName } = useParams();
   const [allContries, setAllCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(
-    Number(sessionStorage.getItem("pageNum"))
+    Number(sessionStorage.getItem("pageNumLang"))
   );
   const [languageName, setLanguageName] = useState('')
   const [filtredCountries, setFiltredCountries] = useState([]);
@@ -35,7 +35,7 @@ function CountriesWithOneLanguage() {
 
   const paginate = (page) => {
     setCurrentPage(page);
-    sessionStorage.setItem("pageNum", page);
+    sessionStorage.setItem("pageNumLang", page);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -83,7 +83,7 @@ function CountriesWithOneLanguage() {
       }
     };
     fetchData();
-  }, []);
+  }, [langName]);
 
   return (
     <>
@@ -111,7 +111,7 @@ function CountriesWithOneLanguage() {
             regions={regions}
           ></Sorts>
           <div className="contries">
-            <CountriesList contriesOnPage={currentCountry} />
+            <CountriesList contriesOnPage={currentCountry.length === 0 ? allContries : currentCountry} />
           </div>
         </div>
         <Pagination

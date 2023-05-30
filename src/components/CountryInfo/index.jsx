@@ -108,10 +108,10 @@ function CountryInfo({chosenCountry}) {
                         {langKeys.map((item, index) => (
                           <Link
                             key={item}
+                            onClick={() => sessionStorage.setItem("pageNumLang", 1)}
                             to={`/about/${chosenCountry.cca2}/langCountries/${item}`}
                           >
-                            <button>{chosenCountry.languages[item]}
-                            {langKeys[index + 1] === undefined ? " " : ", "}</button>
+                            <button>{chosenCountry.languages[item]}</button>
                           </Link>
                         ))}
                       </span>
@@ -151,10 +151,35 @@ function CountryInfo({chosenCountry}) {
                     <p>
                       Car side: <span>{chosenCountry.car.side}</span>
                     </p>
+                    <p>
+                      Fifa: <span>{chosenCountry.fifa}</span>
+                    </p>
+                    <p>
+                      Idd root: <span>{chosenCountry.idd.root}</span>
+                    </p>
+                    <p>
+                      Idd suffixes: <span>{chosenCountry.idd.suffixes.map(
+                          (item, index) =>
+                            `${item}${
+                              chosenCountry.idd.suffixes[index + 1] === undefined ? "" : ","
+                            } `
+                        )}</span>
+                    </p>
                   </div>
                   <div className="">
                     <p>
                       Start of week: <span>{chosenCountry.startOfWeek}</span>
+                    </p>
+                    <p>
+                      Area: <span>{chosenCountry.area}</span>
+                    </p>
+                    <p>
+                      Timezones: <span>{chosenCountry.timezones.map(
+                          (item, index) =>
+                            `${item}${
+                              chosenCountry.timezones[index + 1] === undefined ? "" : ","
+                            } `
+                        )}</span>
                     </p>
                     <p className="coat_photo">
                       Coat of arms:{" "}
