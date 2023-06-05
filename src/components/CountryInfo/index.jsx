@@ -12,7 +12,7 @@ function CountryInfo({chosenCountry}) {
     const langKeys = Object.keys(chosenCountry.languages === undefined ? [] : chosenCountry.languages);
     const nativeNames = Object.keys(chosenCountry.name.nativeName === undefined ? [] : chosenCountry.name.nativeName);
     const carSigns = Object.keys(chosenCountry.car.signs === undefined ? [] : chosenCountry.car.signs)
-
+    const giniKey = Object.keys(chosenCountry.gini === undefined ? [] : chosenCountry.gini)[0]
   return (
     <>
       <div className="container_info_about_country">
@@ -180,6 +180,9 @@ function CountryInfo({chosenCountry}) {
                               chosenCountry.timezones[index + 1] === undefined ? "" : ","
                             } `
                         )}</span>
+                    </p>
+                    <p>
+                      Gini index: <span>{chosenCountry.gini[giniKey]}</span>
                     </p>
                     <p className="coat_photo">
                       Coat of arms:{" "}

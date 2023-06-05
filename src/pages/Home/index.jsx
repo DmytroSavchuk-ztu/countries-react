@@ -36,47 +36,36 @@ function Home() {
   };
   useEffect(() => {
     const fetchData = async () => {
+      let allContriesList = [];
       if (localStorage.getItem("countries") !== "null") {
-        setAllCountries(JSON.parse(localStorage.getItem("countries")));
-        const tmp = JSON.parse(localStorage.getItem("countries")).reduce(
-          (acc, country) => {
-            const { continents, subregion } = country;
-            if (acc[continents]) {
-              acc[continents].add(subregion);
-            } else {
-              acc[continents] = new Set([subregion]);
+        allContriesList = JSON.parse(localStorage.getItem("countries"))
+      }
+      else{
+        try {
+          const result = await axios("http://46.101.96.179/all");
+          allContriesList = result.data.map((item, i) => {
+            if (item.languages && item.languages["de"]) {
+              item.languages["deu"] = item.languages["de"];
+              delete item.languages["de"];
             }
-            return acc;
-          },
-          {}
-        );
-        setRegions(tmp);
-        return;
+            return { ...item, id: i + 1 };
+          });
+          localStorage.setItem("countries", JSON.stringify(allContriesList));
+        } catch {
+          setAllCountries([]);
+        }
       }
-      try {
-        const result = await axios("http://46.101.96.179/all");
-        const resultId = result.data.map((item, i) => {
-          if (item.languages && item.languages["de"]) {
-            item.languages["deu"] = item.languages["de"];
-            delete item.languages["de"];
-          }
-          return { ...item, id: i + 1 };
-        });
-        const tmp = resultId.reduce((acc, country) => {
-          const { continents, subregion } = country;
-          if (acc[continents]) {
-            acc[continents].add(subregion);
-          } else {
-            acc[continents] = new Set([subregion]);
-          }
-          return acc;
-        }, {});
-        setRegions(tmp);
-        setAllCountries(resultId);
-        localStorage.setItem("countries", JSON.stringify(resultId));
-      } catch {
-        setAllCountries([]);
-      }
+      const tmp = allContriesList.reduce((acc, country) => {
+        const { continents, subregion } = country;
+        if (acc[continents]) {
+          acc[continents].add(subregion);
+        } else {
+          acc[continents] = new Set([subregion]);
+        }
+        return acc;
+      }, {});
+      setRegions(tmp)
+      setAllCountries(allContriesList)
     };
 
     fetchData();

@@ -6,6 +6,7 @@ import CountriesWithOneLanguage from "../pages/CountriesWithOneLanguage";
 function AppRouter() {
   sessionStorage.setItem("pageNum", 1);
   sessionStorage.setItem("pageNumLang", 1);
+  localStorage.setItem("countries", null)
   return (
     <Routes>
       <Route path="/" element={<Home />} />

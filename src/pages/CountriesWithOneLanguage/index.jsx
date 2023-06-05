@@ -39,48 +39,39 @@ function CountriesWithOneLanguage() {
   };
   useEffect(() => {
     const fetchData = async () => {
+      let allContriesList = [];
       if (localStorage.getItem("countries") !== "null") {
-        const allContriesList = JSON.parse(localStorage.getItem("countries"));
-        setAllCountries(allContriesList);
-        const filteredCountries = allContriesList.filter(
-          (country) => country.languages && country.languages[langName]
-        );
-        const tmp = filteredCountries.reduce((acc, country) => {
-          const { continents, subregion } = country;
-          if (acc[continents]) {
-            acc[continents].add(subregion);
-          } else {
-            acc[continents] = new Set([subregion]);
-          }
-          return acc;
-        }, {});
-        setRegions(tmp);
-        setLanguageName(filteredCountries[0].languages[langName])
-        setAllCountries(filteredCountries);
-        return;
+        allContriesList = JSON.parse(localStorage.getItem("countries"))
       }
-      try {
-        const result = await axios("http://46.101.96.179/all");
-        const resultId = result.data.map((item, i) => {
-          return { ...item, id: i + 1 };
-        });
-        const filteredCountries = resultId.filter(
-          (country) => country.languages && country.languages[langName]
-        );
-        const tmp = filteredCountries.reduce((acc, country) => {
-          const { continents, subregion } = country;
-          if (acc[continents]) {
-            acc[continents].add(subregion);
-          } else {
-            acc[continents] = new Set([subregion]);
-          }
-          return acc;
-        }, {});
-        setRegions(tmp);
-        setAllCountries(filteredCountries);
-      } catch {
-        setAllCountries([]);
+      else{
+        try {
+          const result = await axios("http://46.101.96.179/all");
+          allContriesList = result.data.map((item, i) => {
+            if (item.languages && item.languages["de"]) {
+              item.languages["deu"] = item.languages["de"];
+              delete item.languages["de"];
+            }
+            return { ...item, id: i + 1 };
+          });
+          localStorage.setItem("countries", JSON.stringify(allContriesList));
+        } catch {
+          setAllCountries([]);
+        }
       }
+      allContriesList = allContriesList.filter(
+        (country) => country.languages && country.languages[langName]
+      );
+      const tmp = allContriesList.reduce((acc, country) => {
+        const { continents, subregion } = country;
+        if (acc[continents]) {
+          acc[continents].add(subregion);
+        } else {
+          acc[continents] = new Set([subregion]);
+        }
+        return acc;
+      }, {});
+      setRegions(tmp)
+      setAllCountries(allContriesList)
     };
     fetchData();
   }, [langName]);
