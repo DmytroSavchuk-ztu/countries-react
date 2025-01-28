@@ -2,86 +2,81 @@ import React, { useEffect, useState } from "react";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-  const [numberOfpagesOnWhichSide, setNumberOfpagesOnWhichSide] = useState(2)
-  // const numberOfpagesOnWhichSide = window.innerWidth <= 645 ? 1 : 2;
-  const renderPageNumbers = () => {
-    const pageList = [];
+  const [numberOfPagesOnEachSide, setNumberOfPagesOnEachSide] = useState(2);
 
-    let hasStartedDots = false;
-    let hasEndedDots = false;
-
-    pageNumbers.map((item) => {
-      if (
-        // Умови за яких буде відображатися кнопка з номером сторінки
-        ((currentPage === 1 || currentPage <= numberOfpagesOnWhichSide + 2) && item <= numberOfpagesOnWhichSide*2+3) ||
-        ((currentPage === totalPages || currentPage >= totalPages - numberOfpagesOnWhichSide-1) &&
-          item >= totalPages - (numberOfpagesOnWhichSide*2+2)) ||
-        item === 1 ||
-        item === totalPages ||
-        (item >= currentPage - numberOfpagesOnWhichSide &&
-          item <= currentPage + numberOfpagesOnWhichSide)
-      ) {
-        //
-        pageList.push(
-          <button
-            key={item}
-            onClick={() => onPageChange(item)}
-            className={currentPage === item ? "button_clicked" : ""}
-          >
-            {item}
-          </button>
-        );
-        hasStartedDots = false;
-        hasEndedDots = false;
-      } else if (!hasStartedDots && item < currentPage) {
-        pageList.push(<span key={item}>. . .</span>);
-        hasStartedDots = true;
-      } else if (!hasEndedDots && item > currentPage && item < totalPages) {
-        pageList.push(<span key={item}>. . .</span>);
-        hasEndedDots = true;
-      }
-    });
-    return pageList;
+  const updatePagesOnResize = () => {
+    setNumberOfPagesOnEachSide(window.innerWidth <= 640 ? 1 : 2);
   };
+
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 640){
-        setNumberOfpagesOnWhichSide(1);
-      }
-      else{
-        setNumberOfpagesOnWhichSide(2);
-      }
-    };
-
-    // Добавляем прослушиватель события изменения размера окна
-    window.addEventListener('resize', handleResize);
-
-    // Очищаем прослушиватель при размонтировании компонента
+    updatePagesOnResize();
+    window.addEventListener("resize", updatePagesOnResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", updatePagesOnResize);
     };
   }, []);
+
+  const renderPageNumbers = () => {
+    const pageList = [];
+    let showDotsStart = false;
+    let showDotsEnd = false;
+
+    for (let i = 1; i <= totalPages; i++) {
+      const isCurrentPage = i === currentPage;
+      const isNearCurrentPage =
+          i >= currentPage - numberOfPagesOnEachSide &&
+          i <= currentPage + numberOfPagesOnEachSide;
+      const isEdgePage = i === 1 || i === totalPages;
+
+      if (isCurrentPage || isNearCurrentPage || isEdgePage) {
+        pageList.push(
+            <button
+                key={i}
+                onClick={() => onPageChange(i)}
+                className={isCurrentPage ? "button_clicked" : ""}
+            >
+              {i}
+            </button>
+        );
+        showDotsStart = false;
+        showDotsEnd = false;
+      }
+      else if (!showDotsStart && i < currentPage) {
+        pageList.push(<span key={`dots-start`}>. . .</span>);
+        showDotsStart = true;
+      }
+      else if (!showDotsEnd && i > currentPage) {
+        pageList.push(<span key={`dots-end`}>. . .</span>);
+        showDotsEnd = true;
+      }
+    }
+
+    return pageList;
+  };
+  const handleArrowClick = (direction) => {
+    const newPage = direction === "left" ? currentPage - 1 : currentPage + 1;
+    if (newPage >= 1 && newPage <= totalPages) {
+      onPageChange(newPage);
+    }
+  };
   return (
-    <div className="pagination">
-      <div
-        onClick={() => onPageChange(currentPage === 1 ? 1 : currentPage - 1)}
-        className={`arrow arrow_left ${
-          currentPage === 1 ? "arrow_disabled" : ""
-        }`}
-      ></div>
-      <div className="pages">{renderPageNumbers()}</div>
-      <div
-        onClick={() =>
-          onPageChange(
-            currentPage === totalPages ? totalPages : currentPage + 1
-          )
-        }
-        className={`arrow arrow_right ${
-          currentPage === totalPages ? "arrow_disabled" : ""
-        }`}
-      ></div>
-    </div>
+      <div className="pagination">
+        <div
+            onClick={() => handleArrowClick("left")}
+            className={`arrow arrow_left ${
+                currentPage === 1 ? "arrow_disabled" : ""
+            }`}
+        ></div>
+
+        <div className="pages">{renderPageNumbers()}</div>
+
+        <div
+            onClick={() => handleArrowClick("right")}
+            className={`arrow arrow_right ${
+                currentPage === totalPages ? "arrow_disabled" : ""
+            }`}
+        ></div>
+      </div>
   );
 };
 
